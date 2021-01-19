@@ -265,6 +265,20 @@ class Web3Client {
     });
   }
 
+  Future<DateTime> getBlockTimestampByBlockNumber(int blockNum) {
+    return _makeRPCCall<Map<String, dynamic>>('eth_getBlockByNumber',
+        [BlockNum.exact(blockNum).toBlockParam(), false]).then((blockInfo) {
+      if (blockInfo != null) {
+        final String timestampHexString = blockInfo["timestamp"];
+        if (timestampHexString != null) {
+          final int seconds = hexToDartInt(timestampHexString);
+          return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
+        }
+      }
+      return null;
+    });
+  }
+
   /// Signs the given transaction using the keys supplied in the [cred]
   /// object to upload it to the client so that it can be executed.
   ///
