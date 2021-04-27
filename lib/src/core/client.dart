@@ -1,3 +1,4 @@
+// @dart=2.9
 part of 'package:web3dart/web3dart.dart';
 
 /// Signature for a function that opens a socket on which json-rpc operations
@@ -148,9 +149,9 @@ class Web3Client {
       final currentBlock = hexToInt(data['currentBlock'] as String).toInt();
       final highestBlock = hexToInt(data['highestBlock'] as String).toInt();
 
-      return SyncInformation._(startingBlock, currentBlock, highestBlock);
+      return SyncInformation(startingBlock, currentBlock, highestBlock);
     } else {
-      return SyncInformation._(null, null, null);
+      return SyncInformation(null, null, null);
     }
   }
 
@@ -397,19 +398,17 @@ class Web3Client {
   /// See also:
   /// - [call], which automatically encodes function parameters and parses a
   /// response.
-  Future<String> callRaw(
-      {EthereumAddress sender,
-      @required EthereumAddress contract,
-      @required Uint8List data,
-      BlockNum atBlock}) {
+  Future<String> callRaw({
+    EthereumAddress sender,
+    @required EthereumAddress contract,
+    @required Uint8List data,
+    BlockNum atBlock,
+  }) {
     final call = {
       'to': contract.hex,
       'data': bytesToHex(data, include0x: true, padToEvenLength: true),
+      if (sender != null) 'from': sender.hex,
     };
-
-    if (sender != null) {
-      call['from'] = sender.hex;
-    }
 
     return _makeRPCCall<String>('eth_call', [call, _getBlockParam(atBlock)]);
   }
