@@ -1,6 +1,16 @@
 # Changelog
 
-## 2.0.0-dev.9
+## 2.1.0
+
+- Add `package:web3dart/browser.dart`, a library for using this package in
+  Ethereum-enabled browsers.
+- Add code generator for smart contracts. To use it, just put the generated abi
+  json into a `.abi.json` file, add a dev-dependency on `build_runner` and run
+  `(flutter | dart) pub run build_runner build`.
+- Add the `package:web3dart/contracts/erc20.dart` library for interacting with an
+  [ERC-20](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md) smart contract.
+
+## 2.0.0
 
 - __Breaking__: Renamed `TransactionReceipt.fromJson` to `TransactionReceipt.fromMap`
 - __Breaking__: Removed the `backgroundIsolate` option from `Web3Client`. 
@@ -9,11 +19,13 @@
   `BigInt`
 - __Breaking__: When not setting the `maxGas` argument, this library will now estimate it instead of using
   a fixed upper bound.
+- Migrate to null safety
 - Add `ecRecover` and `isValidSignature` to verify messages. Thanks, [brickpop](https://github.com/brickpop)!
 - Add `compressPublicKey` and `decompressPublicKey` to obtain a compressed or expanded version of keys.
 - Add `getLogs` method to `Web3Client`. Thanks, [jmank88](https://github.com/jmank88)!
 - Add `sendRawTransaction` to send a raw, signed transaction.
 - Fix `hexToDartInt` not actually parsing hex ([#81](https://github.com/simolus3/web3dart/issues/81))
+- Support for background isolates is temporarily disabled until `package:isolate` migrates to null safety
 
 ## 1.2.3
 
