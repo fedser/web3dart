@@ -262,7 +262,7 @@ class Web3Client {
     });
   }
 
-  Future<DateTime> getBlockTimestampByBlockNumber(int blockNum) {
+  Future<DateTime?> getBlockTimestampByBlockNumber(int blockNum) {
     return _makeRPCCall<Map<String, dynamic>>('eth_getBlockByNumber',
         [BlockNum.exact(blockNum).toBlockParam(), false]).then((blockInfo) {
       if (blockInfo != null) {
