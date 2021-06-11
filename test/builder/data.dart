@@ -1,5 +1,5 @@
 const testCases = <String, String>{
-'''
+  '''
 [
     {
       "inputs": [
@@ -35,8 +35,7 @@ const testCases = <String, String>{
       "stateMutability": "pure",
       "type": "function"
     }
-]''':
-'''
+]''': '''
 // Generated code, do not modify. Run `build_runner build` to re-generate!
 // @dart=2.12
 import 'package:web3dart/web3dart.dart' as _i1;
@@ -76,7 +75,7 @@ class Retrieve3 {
   final bool var3;
 }
 ''',
-'''
+  '''
 [
     {
       "inputs": [],
@@ -127,8 +126,7 @@ class Retrieve3 {
       "stateMutability": "nonpayable",
       "type": "function"
     }
-]''':
-'''
+]''': '''
 // Generated code, do not modify. Run `build_runner build` to re-generate!
 // @dart=2.12
 import 'package:web3dart/web3dart.dart' as _i1;
@@ -184,7 +182,38 @@ class GiveMeHello {
   final BigInt num2;
 }
 ''',
-'''
+  '''
+[
+    {
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "fallback"
+    },
+    {
+        "stateMutability":"payable",
+        "type":"receive"
+    }
+]''': '''
+// Generated code, do not modify. Run `build_runner build` to re-generate!
+// @dart=2.12
+import 'package:web3dart/web3dart.dart' as _i1;
+
+class Contract extends _i1.GeneratedContract {
+  Contract(
+      {required _i1.EthereumAddress address,
+      required _i1.Web3Client client,
+      int? chainId})
+      : super(
+            _i1.DeployedContract(
+                _i1.ContractAbi.fromJson(
+                    '[{"payable":true,"stateMutability":"payable","type":"fallback"},{"stateMutability":"payable","type":"receive"}]',
+                    'Contract'),
+                address),
+            client,
+            chainId);
+}
+''',
+  '''
 [
     {
         "inputs": [],
@@ -199,8 +228,7 @@ class GiveMeHello {
         "stateMutability": "view",
         "type": "function"
     }
-]''':
-'''
+]''': '''
 // Generated code, do not modify. Run `build_runner build` to re-generate!
 // @dart=2.12
 import 'package:web3dart/web3dart.dart' as _i1;
