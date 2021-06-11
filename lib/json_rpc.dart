@@ -74,6 +74,11 @@ class RPCResponse {
   final dynamic result;
 
   const RPCResponse(this.id, this.result);
+
+  @override
+  String toString() {
+    return 'RPCResponse{id: $id, result: $result}';
+  }
 }
 
 /// Exception thrown when an the server returns an error code to an rpc request.
